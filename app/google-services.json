@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "868538428419",
+    "firebase_url": "https://jbbank-72bee-default-rtdb.firebaseio.com",
+    "project_id": "jbbank-72bee",
+    "storage_bucket": "jbbank-72bee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868538428419:android:3639f670d8d8e160637236",
+        "android_client_info": {
+          "package_name": "com.example.jbbank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACQHTuzrr13TVqhVmvbAqubR5wz3PrzOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
