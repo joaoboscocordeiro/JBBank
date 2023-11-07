@@ -1,8 +1,16 @@
 package com.example.core.usecase
 
+import com.example.core.data.repository.AuthFirebaseDataSourceImpl
+import com.example.core.domain.model.User
+import javax.inject.Inject
+
 /**
- * Created by João Bosco on 03/11/2023.
+ * Created by João Bosco on 06/11/2023.
  */
-interface RegisterUseCase {
-    suspend operator fun invoke(name: String, email: String, phone: String, password: String)
+class RegisterUseCase @Inject constructor(
+    private val authFirebaseDataSourceImpl: AuthFirebaseDataSourceImpl
+) {
+    suspend operator fun invoke(user: User): User {
+        return authFirebaseDataSourceImpl.register(user)
+    }
 }

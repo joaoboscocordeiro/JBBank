@@ -7,7 +7,7 @@ Aplicativo de Banco Digital
 
 #### - Kotlin Language
 #### - Clean Architecture
-#### - Modulo App | Core
+#### - Modulus App | Core
 #### - Detekt
 #### - Firebase
 

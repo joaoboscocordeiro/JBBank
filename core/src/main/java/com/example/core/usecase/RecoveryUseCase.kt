@@ -1,8 +1,15 @@
 package com.example.core.usecase
 
+import com.example.core.data.repository.AuthFirebaseDataSourceImpl
+import javax.inject.Inject
+
 /**
- * Created by João Bosco on 03/11/2023.
+ * Created by João Bosco on 06/11/2023.
  */
-interface RecoveryUseCase {
-    suspend operator fun invoke(email: String)
+class RecoveryUseCase @Inject constructor(
+    private val authFirebaseDataSourceImpl: AuthFirebaseDataSourceImpl
+) {
+    suspend operator fun invoke(email: String) {
+        return authFirebaseDataSourceImpl.recovery(email)
+    }
 }

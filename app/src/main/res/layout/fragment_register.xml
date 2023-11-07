@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_border_gray"
             android:hint="@string/txt_hint_name"
-            android:inputType="textEmailAddress"
+            android:inputType="textCapWords"
             android:shadowColor="@color/white"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,20 +74,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/register_edit_phone" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/register_edit_confirm_password"
-            style="@style/Theme.JBBank.FormEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_border_gray"
-            android:hint="@string/txt_hint_confirm_password"
-            android:inputType="textEmailAddress"
-            android:shadowColor="@color/white"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/register_edit_password" />
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register"
             style="@style/Theme.JBBank.Button"
@@ -103,7 +89,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/register_edit_confirm_password" />
+            app:layout_constraintTop_toBottomOf="@id/register_edit_password" />
 
         <ProgressBar
             android:id="@+id/progress"
@@ -113,12 +99,14 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
             android:indeterminateTint="@color/white"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_register"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
