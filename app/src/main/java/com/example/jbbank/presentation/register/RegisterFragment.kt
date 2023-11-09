@@ -1,6 +1,7 @@
 package com.example.jbbank.presentation.register
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,14 +35,14 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initListener()
+        //initToolbar(binding.toolbar)
+
+        initUi()
     }
 
-    private fun initListener() {
+    private fun initUi() {
         with(binding) {
-            toolbar.btnBack.ibBack.setOnClickListener { }
-            toolbar.txtTitle.text = "Criar Conta"
-            btnRegister.setOnClickListener { validData() }
+            btnSignUp.setOnClickListener { validData() }
         }
     }
 
@@ -93,6 +94,7 @@ class RegisterFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
+                    Log.e("FIREBASE_AUTH", stateView.message.toString())
                     binding.progress.isVisible = false
                     Toast.makeText(
                         requireContext(), stateView.message,

@@ -1,9 +1,7 @@
 package com.example.jbbank.framework.di
 
+import com.example.core.data.repository.AuthFirebaseDataSource
 import com.example.core.data.repository.AuthFirebaseDataSourceImpl
-import com.example.core.usecase.LoginUseCase
-import com.example.core.usecase.RecoveryUseCase
-import com.example.core.usecase.RegisterUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,14 +12,14 @@ import dagger.hilt.android.components.ViewModelComponent
  */
 @Module
 @InstallIn(ViewModelComponent::class)
-interface UseCaseModule {
+abstract class UseCaseModule {
 
     @Binds
-    fun bindLoginUseCase(useCase: AuthFirebaseDataSourceImpl): LoginUseCase
+    abstract fun bindLoginUseCase(useCase: AuthFirebaseDataSourceImpl): AuthFirebaseDataSource
 
-    @Binds
-    fun bindRecoveryUseCase(useCase: AuthFirebaseDataSourceImpl): RecoveryUseCase
-
-    @Binds
-    fun bindRegisterUseCase(useCase: AuthFirebaseDataSourceImpl): RegisterUseCase
+//    @Binds
+//    abstract fun bindRecoveryUseCase(useCase: AuthFirebaseDataSourceImpl): RecoveryUseCase
+//
+//    @Binds
+//    abstract fun bindRegisterUseCase(useCase: AuthFirebaseDataSourceImpl): RegisterUseCase
 }

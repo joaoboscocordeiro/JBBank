@@ -29,12 +29,11 @@ class RecoveryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        configClicks()
+        initUi()
     }
 
-    private fun configClicks() {
+    private fun initUi() {
         with(binding) {
-            toolbar.txtTitle.text = "Recuperar Senha"
         }
     }
 

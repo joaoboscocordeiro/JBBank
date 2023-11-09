@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class RecoveryViewModel @Inject constructor(
-    private val recoveryUseCase: com.example.core.usecase.RecoveryUseCase
+    private val recoveryUseCase: RecoveryUseCase
 ) : ViewModel() {
 
     @Suppress("TooGenericExceptionCaught")

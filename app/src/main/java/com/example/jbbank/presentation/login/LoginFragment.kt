@@ -1,6 +1,7 @@
 package com.example.jbbank.presentation.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,18 +36,18 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        configClicks()
+        initUi()
     }
 
-    private fun configClicks() {
+    private fun initUi() {
         with(binding) {
-            loginTextRecovery.setOnClickListener {
+            loginTxtForgotPassword.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_recoveryFragment)
             }
-            loginTextRegister.setOnClickListener {
+            loginTxtRegister.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
-            btnLogin.setOnClickListener { validData() }
+            btnSignIn.setOnClickListener { validData() }
         }
     }
 
@@ -80,6 +81,7 @@ class LoginFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
+                    Log.e("FIREBASE_AUTH", stateView.message.toString())
                     binding.progress.isVisible = false
                     Toast.makeText(
                         requireContext(), stateView.message,

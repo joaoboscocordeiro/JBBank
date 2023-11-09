@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: com.example.core.usecase.LoginUseCase
+    private val loginUseCase: LoginUseCase
 ) : ViewModel() {
 
     @Suppress("TooGenericExceptionCaught")
