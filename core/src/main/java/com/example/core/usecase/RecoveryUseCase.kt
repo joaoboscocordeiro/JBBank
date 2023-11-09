@@ -1,6 +1,6 @@
 package com.example.core.usecase
 
-import com.example.core.data.repository.AuthFirebaseDataSourceImpl
+import com.example.core.data.repository.auth.AuthFirebaseDataSourceImpl
 import javax.inject.Inject
 
 /**

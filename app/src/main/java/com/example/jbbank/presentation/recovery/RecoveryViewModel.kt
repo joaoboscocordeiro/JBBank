@@ -6,6 +6,7 @@ import com.example.core.usecase.RecoveryUseCase
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import java.io.IOException
 import javax.inject.Inject
 
 /**
@@ -16,13 +17,12 @@ class RecoveryViewModel @Inject constructor(
     private val recoveryUseCase: RecoveryUseCase
 ) : ViewModel() {
 
-    @Suppress("TooGenericExceptionCaught")
     fun recovery(email: String) = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
             recoveryUseCase.invoke(email)
             emit(StateView.Success(null))
-        } catch (ex: Exception) {
+        } catch (ex: IOException) {
             emit(StateView.Error(ex.message))
         }
     }

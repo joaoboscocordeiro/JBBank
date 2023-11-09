@@ -1,4 +1,4 @@
-package com.example.core.data.repository
+package com.example.core.data.repository.auth
 
 import com.example.core.domain.model.User
 

@@ -10,10 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.core.domain.model.User
+import com.example.core.domain.model.Wallet
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentRegisterBinding
 import com.example.jbbank.framework.db.FirebaseHelper
 import com.example.jbbank.presentation.profile.ProfileViewModel
+import com.example.jbbank.presentation.wallet.WalletViewModel
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,7 @@ class RegisterFragment : Fragment() {
 
     private val registerViewModel: RegisterViewModel by viewModels()
     private val profileViewModel: ProfileViewModel by viewModels()
+    private val walletViewModel: WalletViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,9 +71,7 @@ class RegisterFragment : Fragment() {
                             showBottomSheet(message = getString(R.string.text_password_empty))
                         }
                     } else {
-                        showBottomSheet(
-                            message = getString(R.string.text_phone_invalid)
-                        )
+                        showBottomSheet(message = getString(R.string.text_phone_invalid))
                     }
                 } else {
                     showBottomSheet(message = getString(R.string.text_phone_empty))
@@ -84,18 +85,37 @@ class RegisterFragment : Fragment() {
     }
 
     private fun registerUser(name: String, email: String, phone: String, password: String) {
-        registerViewModel.register(name, email, phone, password).observe(viewLifecycleOwner) { stateView ->
-            when (stateView) {
-                is StateView.Loading -> {
-                    binding.progress.isVisible = true
-                }
+        registerViewModel.register(name, email, phone, password)
+            .observe(viewLifecycleOwner) { stateView ->
+                when (stateView) {
+                    is StateView.Loading -> {
+                        binding.progress.isVisible = true
+                    }
 
+                    is StateView.Success -> {
+                        stateView.data?.let { saveProfile(it) }
+                    }
+
+                    is StateView.Error -> {
+                        Log.e("FIREBASE_AUTH", stateView.message.toString())
+                        binding.progress.isVisible = false
+                        showBottomSheet(
+                            message = getString(FirebaseHelper.validError(stateView.message.toString()))
+                        )
+                    }
+                }
+            }
+    }
+
+    private fun saveProfile(user: User) {
+        profileViewModel.save(user).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {}
                 is StateView.Success -> {
-                    stateView.data?.let { saveProfile(it) }
+                    initWallet()
                 }
 
                 is StateView.Error -> {
-                    Log.e("FIREBASE_AUTH", stateView.message.toString())
                     binding.progress.isVisible = false
                     showBottomSheet(
                         message = getString(FirebaseHelper.validError(stateView.message.toString()))
@@ -105,8 +125,10 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun saveProfile(user: User) {
-        profileViewModel.save(user).observe(viewLifecycleOwner) { stateView ->
+    private fun initWallet() {
+        walletViewModel.initWallet(Wallet(
+            userId = FirebaseHelper.getUserId()
+        )).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {}
                 is StateView.Success -> {

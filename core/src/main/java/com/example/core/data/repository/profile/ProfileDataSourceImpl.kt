@@ -1,4 +1,4 @@
-package com.example.core.data.repository
+package com.example.core.data.repository.profile
 
 import com.example.core.domain.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -9,9 +9,9 @@ import kotlin.coroutines.suspendCoroutine
 /**
  * Created by João Bosco on 09/11/2023.
  */
-class ProfileRepositoryImpl @Inject constructor(
+class ProfileDataSourceImpl @Inject constructor(
     firebaseDatabase: FirebaseDatabase
-) : ProfileRepository {
+) : ProfileDataSource {
 
     private val profileRef = firebaseDatabase.reference
         .child("profile")

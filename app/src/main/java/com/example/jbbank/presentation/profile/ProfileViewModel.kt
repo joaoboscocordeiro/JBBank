@@ -17,6 +17,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val profileUseCase: ProfileUseCase
 ) : ViewModel() {
+
     fun save(user: User) = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())

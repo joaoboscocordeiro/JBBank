@@ -1,7 +1,7 @@
 package com.example.jbbank.framework.di
 
-import com.example.core.data.repository.AuthFirebaseDataSource
-import com.example.core.data.repository.AuthFirebaseDataSourceImpl
+import com.example.core.data.repository.auth.AuthFirebaseDataSource
+import com.example.core.data.repository.auth.AuthFirebaseDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
