@@ -5,14 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentLoginBinding
+import com.example.jbbank.framework.db.FirebaseHelper
 import com.example.jbbank.util.StateView
+import com.example.jbbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -37,6 +38,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initUi()
+
     }
 
     private fun initUi() {
@@ -61,10 +63,10 @@ class LoginFragment : Fragment() {
                 loginUser(email, password)
 
             } else {
-                Toast.makeText(requireContext(), "Digite sua senha.", Toast.LENGTH_LONG).show()
+                showBottomSheet(message = getString(R.string.text_password_empty))
             }
         } else {
-            Toast.makeText(requireContext(), "Digite seu e-mail.", Toast.LENGTH_LONG).show()
+            showBottomSheet(message = getString(R.string.text_email_empty))
         }
     }
 
@@ -77,16 +79,15 @@ class LoginFragment : Fragment() {
 
                 is StateView.Success -> {
                     binding.progress.isVisible = false
-                    findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 }
 
                 is StateView.Error -> {
-                    Log.e("FIREBASE_AUTH", stateView.message.toString())
                     binding.progress.isVisible = false
-                    Toast.makeText(
-                        requireContext(), stateView.message,
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Log.i("FIREBASE_AUTH", "loginUser: ${stateView.message}")
+                    showBottomSheet(
+                        message = getString(FirebaseHelper.validError(stateView.message.toString()))
+                    )
                 }
             }
         }

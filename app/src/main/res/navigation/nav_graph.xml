@@ -40,7 +40,11 @@
             android:id="@+id/recoveryFragment"
             android:name="com.example.jbbank.presentation.recovery.RecoveryFragment"
             android:label="fragment_recovery"
-            tools:layout="@layout/fragment_recovery" />
+            tools:layout="@layout/fragment_recovery" >
+            <action
+                android:id="@+id/action_recoveryFragment_to_loginFragment"
+                app:destination="@id/loginFragment" />
+        </fragment>
         <fragment
             android:id="@+id/registerFragment"
             android:name="com.example.jbbank.presentation.register.RegisterFragment"

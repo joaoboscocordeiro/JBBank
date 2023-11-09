@@ -5,13 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.core.domain.model.User
+import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentRegisterBinding
+import com.example.jbbank.framework.db.FirebaseHelper
 import com.example.jbbank.util.StateView
+import com.example.jbbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -62,18 +65,16 @@ class RegisterFragment : Fragment() {
                         registerUser(user)
 
                     } else {
-                        Toast.makeText(requireContext(), "Digite sua senha.", Toast.LENGTH_LONG)
-                            .show()
+                        showBottomSheet(message = getString(R.string.text_password_empty))
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Digite seu telefone.", Toast.LENGTH_LONG)
-                        .show()
+                    showBottomSheet(message = getString(R.string.text_phone_empty))
                 }
             } else {
-                Toast.makeText(requireContext(), "Digite seu e-mail.", Toast.LENGTH_LONG).show()
+                showBottomSheet(message = getString(R.string.text_email_empty))
             }
         } else {
-            Toast.makeText(requireContext(), "Digite seu nome.", Toast.LENGTH_LONG).show()
+            showBottomSheet(message = getString(R.string.text_name_empty))
         }
     }
 
@@ -86,20 +87,15 @@ class RegisterFragment : Fragment() {
 
                 is StateView.Success -> {
                     binding.progress.isVisible = false
-                    Toast.makeText(
-                        requireContext(),
-                        "Usuário registrado com sucesso.",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 }
 
                 is StateView.Error -> {
                     Log.e("FIREBASE_AUTH", stateView.message.toString())
                     binding.progress.isVisible = false
-                    Toast.makeText(
-                        requireContext(), stateView.message,
-                        Toast.LENGTH_LONG
-                    ).show()
+                    showBottomSheet(
+                        message = getString(FirebaseHelper.validError(stateView.message.toString()))
+                    )
                 }
             }
         }

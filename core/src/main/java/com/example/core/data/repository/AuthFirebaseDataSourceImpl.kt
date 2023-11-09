@@ -14,16 +14,15 @@ class AuthFirebaseDataSourceImpl @Inject constructor(
 
     override suspend fun login(email: String, password: String) {
         return suspendCoroutine { continuation ->
-            firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        continuation.resumeWith(Result.success(Unit))
-                    } else {
-                        task.exception?.let { error ->
-                            continuation.resumeWith(Result.failure(error))
-                        }
+            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    continuation.resumeWith(Result.success(Unit))
+                } else {
+                    task.exception?.let { error ->
+                        continuation.resumeWith(Result.failure(error))
                     }
                 }
+            }
         }
     }
 
@@ -44,16 +43,15 @@ class AuthFirebaseDataSourceImpl @Inject constructor(
 
     override suspend fun recovery(email: String) {
         return suspendCoroutine { continuation ->
-            firebaseAuth.sendPasswordResetEmail(email)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        continuation.resumeWith(Result.success(Unit))
-                    } else {
-                        task.exception?.let { error ->
-                            continuation.resumeWith(Result.failure(error))
-                        }
+            firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    continuation.resumeWith(Result.success(Unit))
+                } else {
+                    task.exception?.let { error ->
+                        continuation.resumeWith(Result.failure(error))
                     }
                 }
+            }
         }
     }
 }
