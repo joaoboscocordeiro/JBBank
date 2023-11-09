@@ -2,7 +2,6 @@ package com.example.jbbank.presentation.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.domain.model.User
 import com.example.core.usecase.RegisterUseCase
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,10 +17,10 @@ class RegisterViewModel @Inject constructor(
 ) : ViewModel() {
 
     @Suppress("TooGenericExceptionCaught")
-    fun register(user: User) = liveData(Dispatchers.IO) {
+    fun register(name: String, email: String, phone: String, password: String) = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
-            registerUseCase.invoke(user)
+            val user = registerUseCase.invoke(name, email, phone, password)
             emit(StateView.Success(user))
         } catch (ex: Exception) {
             emit(StateView.Error(ex.message))

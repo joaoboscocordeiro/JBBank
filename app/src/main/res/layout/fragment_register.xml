@@ -81,7 +81,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/register_edit_name" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.vicmikhailau.maskededittext.MaskedEditText
                 android:id="@+id/register_edit_phone"
                 style="@style/Theme.JBBank.FormEditText"
                 android:drawableStart="@drawable/ic_phone"
@@ -89,10 +89,11 @@
                 android:drawableTint="@color/purple_700"
                 android:ems="10"
                 android:hint="@string/hint_phone"
-                android:inputType="number"
+                android:inputType="phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/register_edit_email" />
+                app:layout_constraintTop_toBottomOf="@id/register_edit_email"
+                app:mask="(##) #####-####"/>
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/register_edit_password"

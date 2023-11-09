@@ -10,6 +10,7 @@
     <string name="text_name_empty">Enter your name.</string>
     <string name="text_email_empty">Enter your e-mail.</string>
     <string name="text_phone_empty">Enter your phone.</string>
+    <string name="text_phone_invalid">Enter a valid phone number.</string>
     <string name="text_password_empty">Enter your password.</string>
     <string name="error_generic">There was an error, please try again later.</string>
 

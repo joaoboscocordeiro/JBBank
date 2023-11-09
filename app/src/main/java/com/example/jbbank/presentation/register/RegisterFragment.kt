@@ -13,6 +13,7 @@ import com.example.core.domain.model.User
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentRegisterBinding
 import com.example.jbbank.framework.db.FirebaseHelper
+import com.example.jbbank.presentation.profile.ProfileViewModel
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +27,8 @@ class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding: FragmentRegisterBinding get() = _binding!!
 
-    private val viewModel: RegisterViewModel by viewModels()
+    private val registerViewModel: RegisterViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,8 +39,6 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //initToolbar(binding.toolbar)
 
         initUi()
     }
@@ -53,19 +53,24 @@ class RegisterFragment : Fragment() {
     private fun validData() {
         val name = binding.registerEditName.text.toString().trim()
         val email = binding.registerEditEmail.text.toString().trim()
-        val phone = binding.registerEditPhone.text.toString().trim()
+        val phone = binding.registerEditPhone.unMaskedText
         val password = binding.registerEditPassword.text.toString().trim()
 
         if (name.isNotEmpty()) {
             if (email.isNotEmpty()) {
-                if (phone.isNotEmpty()) {
-                    if (password.isNotEmpty()) {
+                if (phone?.isNotEmpty() == true) {
+                    if (phone.length == PHONE_QUANTITY) {
+                        if (password.isNotEmpty()) {
 
-                        val user = User(name, email, phone, password)
-                        registerUser(user)
+                            registerUser(name, email, phone, password)
 
+                        } else {
+                            showBottomSheet(message = getString(R.string.text_password_empty))
+                        }
                     } else {
-                        showBottomSheet(message = getString(R.string.text_password_empty))
+                        showBottomSheet(
+                            message = getString(R.string.text_phone_invalid)
+                        )
                     }
                 } else {
                     showBottomSheet(message = getString(R.string.text_phone_empty))
@@ -78,16 +83,15 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun registerUser(user: User) {
-        viewModel.register(user).observe(viewLifecycleOwner) { stateView ->
+    private fun registerUser(name: String, email: String, phone: String, password: String) {
+        registerViewModel.register(name, email, phone, password).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
                     binding.progress.isVisible = true
                 }
 
                 is StateView.Success -> {
-                    binding.progress.isVisible = false
-                    findNavController().navigate(R.id.action_global_homeFragment)
+                    stateView.data?.let { saveProfile(it) }
                 }
 
                 is StateView.Error -> {
@@ -101,8 +105,31 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    private fun saveProfile(user: User) {
+        profileViewModel.save(user).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {}
+                is StateView.Success -> {
+                    binding.progress.isVisible = false
+                    findNavController().navigate(R.id.action_global_homeFragment)
+                }
+
+                is StateView.Error -> {
+                    binding.progress.isVisible = false
+                    showBottomSheet(
+                        message = getString(FirebaseHelper.validError(stateView.message.toString()))
+                    )
+                }
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val PHONE_QUANTITY = 11
     }
 }

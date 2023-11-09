@@ -37,7 +37,11 @@ dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
-    implementation("com.google.firebase:firebase-auth-ktx:22.2.0")
+
+    // Firebase
+    api (platform("com.google.firebase:firebase-bom:32.5.0"))
+    api ("com.google.firebase:firebase-database-ktx")
+    api ("com.google.firebase:firebase-auth-ktx")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

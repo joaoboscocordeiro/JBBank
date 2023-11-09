@@ -7,8 +7,8 @@ import com.google.firebase.auth.FirebaseAuth
  * Created by João Bosco on 03/11/2023.
  */
 object FirebaseHelper {
-
     fun isAuthenticated() = FirebaseAuth.getInstance().currentUser != null
+    fun getUserId() = FirebaseAuth.getInstance().currentUser?.uid ?: ""
     fun validError(error: String): Int {
         return when {
             error.contains("There is no user record corresponding to this identifier") ->
@@ -33,20 +33,4 @@ object FirebaseHelper {
                 R.string.error_generic
         }
     }
-
-//    fun validError(error: String): String {
-//        var message = ""
-//        if (error.contains("There is no user record corresponding to this identifier")) {
-//            message = "${R.string.account_not_registered_register_fragment}"
-//        } else if (error.contains("The email address is badly formatted")) {
-//            message = "Insira um e-mail válido."
-//        } else if (error.contains("The password is invalid or the user does not have a password")) {
-//            message = "Senha inválida, tente novamente."
-//        } else if (error.contains("The email address is already in use by another account")) {
-//            message = "Este e-mail já está em uso."
-//        } else if (error.contains("Password should be at least 6 characters")) {
-//            message = "Insira uma senha mais forte."
-//        }
-//        return message
-//    }
 }
