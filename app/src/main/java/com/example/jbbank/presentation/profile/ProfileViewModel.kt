@@ -7,7 +7,6 @@ import com.example.core.usecase.ProfileUseCase
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import java.io.IOException
 import javax.inject.Inject
 
 /**
@@ -18,12 +17,13 @@ class ProfileViewModel @Inject constructor(
     private val profileUseCase: ProfileUseCase
 ) : ViewModel() {
 
+    @Suppress("TooGenericExceptionCaught")
     fun save(user: User) = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
             profileUseCase.invoke(user)
             emit(StateView.Success(null))
-        } catch (ex: IOException) {
+        } catch (ex: Exception) {
             emit(StateView.Error(ex.message))
         }
     }

@@ -7,6 +7,7 @@
     <string name="hint_password">Password:</string>
     <string name="hint_name">Name:</string>
     <string name="hint_phone">Phone:</string>
+    <string name="text_format_value">R$ %1$s</string>
     <string name="text_name_empty">Enter your name.</string>
     <string name="text_email_empty">Enter your e-mail.</string>
     <string name="text_phone_empty">Enter your phone.</string>
@@ -39,4 +40,14 @@
     <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
     <string name="access_to_this_account_has_been_temporarily_disabled">Bloqueamos todas as solicitações deste dispositivo devido a atividades incomuns. Tente mais tarde.</string>
+
+    <!-- Screen Home Fragment -->
+    <string name="text_deposit_home">Depositar</string>
+    <string name="text_refill_home">Recarga de celular</string>
+    <string name="text_extract_home">Extrato</string>
+    <string name="text_transfer_home">Transferir</string>
+    <string name="text_profile_home">Perfil</string>
+    <string name="text_my_balance_home">Meu saldo</string>
+    <string name="text_activities_home">Últimas 6 atividades</string>
+    <string name="text_view_full_home">Ver Todas</string>
 </resources>

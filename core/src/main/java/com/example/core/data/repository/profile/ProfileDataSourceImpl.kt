@@ -10,12 +10,15 @@ import kotlin.coroutines.suspendCoroutine
  * Created by João Bosco on 09/11/2023.
  */
 class ProfileDataSourceImpl @Inject constructor(
-    firebaseDatabase: FirebaseDatabase
+    firebaseDatabase: FirebaseDatabase,
+    firebaseAuth: FirebaseAuth
 ) : ProfileDataSource {
+
+    private val getUserId = firebaseAuth.currentUser?.uid ?: ""
 
     private val profileRef = firebaseDatabase.reference
         .child("profile")
-        .child(getUserId())
+        .child(getUserId)
 
     override suspend fun saveProfile(user: User) {
         return suspendCoroutine { continuation ->
@@ -30,6 +33,4 @@ class ProfileDataSourceImpl @Inject constructor(
             }
         }
     }
-
-    private fun getUserId() = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 }

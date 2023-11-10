@@ -86,7 +86,7 @@ class LoginFragment : Fragment() {
                     binding.progress.isVisible = false
                     Log.i("FIREBASE_AUTH", "loginUser: ${stateView.message}")
                     showBottomSheet(
-                        message = getString(FirebaseHelper.validError(stateView.message.toString()))
+                        message = getString(FirebaseHelper.validError(stateView.message ?: ""))
                     )
                 }
             }

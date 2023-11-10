@@ -1,28 +1,27 @@
-package com.example.jbbank.presentation.wallet
+package com.example.jbbank.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.domain.model.Wallet
-import com.example.core.usecase.InitWalletUseCase
+import com.example.core.usecase.GetWalletUseCase
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 /**
- * Created by João Bosco on 09/11/2023.
+ * Created by João Bosco on 10/11/2023.
  */
 @HiltViewModel
-class WalletViewModel @Inject constructor(
-    private val initWalletUseCase: InitWalletUseCase
+class HomeViewModel @Inject constructor(
+    private val getWalletUseCase: GetWalletUseCase
 ) : ViewModel() {
 
     @Suppress("TooGenericExceptionCaught")
-    fun initWallet(wallet: Wallet) = liveData(Dispatchers.IO) {
+    fun getWallet() = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
-            initWalletUseCase.invoke(wallet)
-            emit(StateView.Success(null))
+            val wallet = getWalletUseCase.invoke()
+            emit(StateView.Success(wallet))
         } catch (ex: Exception) {
             emit(StateView.Error(ex.message))
         }

@@ -21,18 +21,16 @@ fun Fragment.initToolbar(toolbar: Toolbar, homeAsUpEnabled: Boolean = true) {
 fun Fragment.showBottomSheet(
     titleDialog: Int? = null,
     titleButton: Int? = null,
-    message: String,
+    message: String?,
     onClick: () -> Unit = {}
 ) {
     val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.Bottom_Sheet_Dialog)
     val bottomSheetBinding: BottomSheetBinding =
         BottomSheetBinding.inflate(layoutInflater, null, false)
 
-    bottomSheetBinding.sheerTxtTitle.text =
-        getString(titleDialog ?: R.string.text_title_bottom_sheet)
-    bottomSheetBinding.sheerTxtMassage.text = message
-    bottomSheetBinding.btnSheet.text =
-        getString(titleButton ?: R.string.text_button_bottom_sheet)
+    bottomSheetBinding.sheerTxtTitle.text = getString(titleDialog ?: R.string.text_title_bottom_sheet)
+    bottomSheetBinding.sheerTxtMassage.text = message ?: getText(R.string.error_generic)
+    bottomSheetBinding.btnSheet.text = getString(titleButton ?: R.string.text_button_bottom_sheet)
     bottomSheetBinding.btnSheet.setOnClickListener {
         bottomSheetDialog.dismiss()
         onClick()

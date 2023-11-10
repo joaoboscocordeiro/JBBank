@@ -6,7 +6,6 @@ import com.example.core.usecase.RegisterUseCase
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import java.io.IOException
 import javax.inject.Inject
 
 /**
@@ -17,12 +16,13 @@ class RegisterViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase
 ) : ViewModel() {
 
+    @Suppress("TooGenericExceptionCaught")
     fun register(name: String, email: String, phone: String, password: String) = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
             val user = registerUseCase.invoke(name, email, phone, password)
             emit(StateView.Success(user))
-        } catch (ex: IOException) {
+        } catch (ex: Exception) {
             emit(StateView.Error(ex.message))
         }
     }

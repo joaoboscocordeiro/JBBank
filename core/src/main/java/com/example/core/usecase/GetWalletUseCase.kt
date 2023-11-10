@@ -7,10 +7,10 @@ import javax.inject.Inject
 /**
  * Created by João Bosco on 09/11/2023.
  */
-class WalletUseCase @Inject constructor(
+class GetWalletUseCase @Inject constructor(
     private val walletDataSourceImpl: WalletDataSourceImpl
 ) {
-    suspend operator fun invoke(wallet: Wallet) {
-        return walletDataSourceImpl.initWallet(wallet)
+    suspend operator fun invoke(): Wallet {
+        return walletDataSourceImpl.getWallet()
     }
 }
