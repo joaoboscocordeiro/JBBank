@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.core.domain.model.Wallet
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentHomeBinding
@@ -37,6 +38,15 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getWallet()
+        initUi()
+    }
+
+    private fun initUi() {
+        with(binding) {
+            cardDepositHome.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
+            }
+        }
     }
 
     private fun getWallet() {

@@ -16,14 +16,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".25" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <include
         android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        layout="@layout/ib_back"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

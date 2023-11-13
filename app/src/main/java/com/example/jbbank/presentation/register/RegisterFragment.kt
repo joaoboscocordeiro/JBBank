@@ -18,6 +18,7 @@ import com.example.jbbank.presentation.profile.ProfileViewModel
 import com.example.jbbank.presentation.wallet.WalletViewModel
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -48,6 +49,7 @@ class RegisterFragment : Fragment() {
 
     private fun initUi() {
         with(binding) {
+            btnBack.ibBack.setOnClickListener { findNavController().popBackStack() }
             btnSignUp.setOnClickListener { validData() }
         }
     }
@@ -68,18 +70,23 @@ class RegisterFragment : Fragment() {
                             registerUser(name, email, phone, password)
 
                         } else {
+                            binding.registerEditPassword.requestFocus()
                             showBottomSheet(message = getString(R.string.text_password_empty))
                         }
                     } else {
+                        binding.registerEditPhone.requestFocus()
                         showBottomSheet(message = getString(R.string.text_phone_invalid))
                     }
                 } else {
+                    binding.registerEditPhone.requestFocus()
                     showBottomSheet(message = getString(R.string.text_phone_empty))
                 }
             } else {
+                binding.registerEditEmail.requestFocus()
                 showBottomSheet(message = getString(R.string.text_email_empty))
             }
         } else {
+            binding.registerEditName.requestFocus()
             showBottomSheet(message = getString(R.string.text_name_empty))
         }
     }
@@ -134,6 +141,10 @@ class RegisterFragment : Fragment() {
                 is StateView.Success -> {
                     binding.progress.isVisible = false
                     findNavController().navigate(R.id.action_global_homeFragment)
+                    view?.let { Snackbar.make(
+                            it, "Usuário cadastrado com sucesso!", Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
                 }
 
                 is StateView.Error -> {

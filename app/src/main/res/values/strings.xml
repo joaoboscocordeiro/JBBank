@@ -50,4 +50,21 @@
     <string name="text_my_balance_home">Meu saldo</string>
     <string name="text_activities_home">Últimas 6 atividades</string>
     <string name="text_view_full_home">Ver Todas</string>
+
+    <!-- Screen Deposit Form Fragment -->
+    <string name="text_inform_deposit">Informe a valor a ser depositado</string>
+    <string name="text_deposit_value">Valor do deposito</string>
+    <string name="text_deposit">Depositar</string>
+    <string name="btn_confirm">CONFIRMAR</string>
+
+    <!-- Screen Receipt Fragment -->
+    <string name="text_title_receipt">Depósito efetuado \ncom sucesso!</string>
+    <string name="text_sub_title_receipt">Seu deposito ficará disponível em até 3 dias úteis.</string>
+    <string name="text_code_transaction_receipt">Código Transação</string>
+    <string name="text_date_transaction_receipt">Data deposito</string>
+    <string name="text_value_transaction_receipt">Valor deposito</string>
+    <string name="btn_next_receipt">Continuar</string>
+    <string name="text_title_toolbar_receipt">Recibo</string>
+    <string name="text_message_empty">Digite um valor!</string>
+
 </resources>
