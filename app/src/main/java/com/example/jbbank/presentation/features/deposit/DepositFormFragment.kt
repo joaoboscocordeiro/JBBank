@@ -1,4 +1,4 @@
-package com.example.jbbank.presentation.recovery
+package com.example.jbbank.presentation.features.deposit
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,30 +8,29 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.core.domain.model.Deposit
 import com.example.jbbank.R
-import com.example.jbbank.databinding.FragmentRecoveryBinding
-import com.example.jbbank.framework.db.FirebaseHelper
+import com.example.jbbank.databinding.FragmentDepositFormBinding
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * Created by João Bosco on 02/11/2023.
+ * Created by João Bosco on 11/11/2023.
  */
 @AndroidEntryPoint
-class RecoveryFragment : Fragment() {
+class DepositFormFragment : Fragment() {
 
-    private var _binding: FragmentRecoveryBinding? = null
-    private val binding: FragmentRecoveryBinding get() = _binding!!
+    private var _binding: FragmentDepositFormBinding? = null
+    private val binding: FragmentDepositFormBinding get() = _binding!!
 
-    private val viewModel: RecoveryViewModel by viewModels()
+    private val depositViewModel: DepositViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentRecoveryBinding.inflate(inflater, container, false)
+    ) = FragmentDepositFormBinding.inflate(inflater, container, false)
         .apply { _binding = this }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,22 +41,27 @@ class RecoveryFragment : Fragment() {
 
     private fun initUi() {
         with(binding) {
-            btnBack.ibBack.setOnClickListener { findNavController().popBackStack() }
-            btnRecovery.setOnClickListener { validData() }
+            toolbarDeposit.txtTitle.text = getString(R.string.text_deposit)
+            toolbarDeposit.btnBack.ibBack.setOnClickListener { findNavController().popBackStack() }
+            btnConfirm.setOnClickListener { validateDeposit() }
         }
     }
 
-    private fun validData() {
-        val email = binding.recoveryEditEmail.text.toString().trim()
-        if (email.isNotEmpty()) {
-            recoveryAccount(email)
+    private fun validateDeposit() {
+        val amount = binding.editAmount.text.toString().trim()
+
+        if (amount.isNotEmpty()) {
+            val deposit = Deposit(amount = amount.toFloat())
+
+            saveDeposit(deposit)
         } else {
-            showBottomSheet(message = getString(R.string.text_email_empty))
+            binding.editAmount.requestFocus()
+            showBottomSheet(message = getString(R.string.text_message_empty))
         }
     }
 
-    private fun recoveryAccount(email: String) {
-        viewModel.recovery(email).observe(viewLifecycleOwner) { stateView ->
+    private fun saveDeposit(deposit: Deposit) {
+        depositViewModel.saveDeposit(deposit).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
                     binding.progress.isVisible = true
@@ -65,23 +69,21 @@ class RecoveryFragment : Fragment() {
 
                 is StateView.Success -> {
                     binding.progress.isVisible = false
-                    findNavController().navigate(R.id.action_recoveryFragment_to_loginFragment)
                     view?.let {
                         Snackbar.make(
-                            it, "E-mail enviado com sucesso!", Snackbar.LENGTH_SHORT
+                            it, "Deposito sucesso!", Snackbar.LENGTH_SHORT
                         ).show()
                     }
                 }
 
                 is StateView.Error -> {
                     binding.progress.isVisible = false
-                    showBottomSheet(
-                        message = getString(FirebaseHelper.validError(stateView.message.toString()))
-                    )
+                    showBottomSheet(message = stateView.message)
                 }
             }
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

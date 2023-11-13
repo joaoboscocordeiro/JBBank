@@ -14,6 +14,7 @@ import com.example.jbbank.databinding.FragmentLoginBinding
 import com.example.jbbank.framework.db.FirebaseHelper
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -63,9 +64,11 @@ class LoginFragment : Fragment() {
                 loginUser(email, password)
 
             } else {
+                binding.loginEditPassword.requestFocus()
                 showBottomSheet(message = getString(R.string.text_password_empty))
             }
         } else {
+            binding.loginEditEmail.requestFocus()
             showBottomSheet(message = getString(R.string.text_email_empty))
         }
     }
@@ -80,6 +83,8 @@ class LoginFragment : Fragment() {
                 is StateView.Success -> {
                     binding.progress.isVisible = false
                     findNavController().navigate(R.id.action_global_homeFragment)
+                    view?.let { Snackbar.make(it, "Usuário logado com sucesso!",
+                        Snackbar.LENGTH_SHORT).show() }
                 }
 
                 is StateView.Error -> {
