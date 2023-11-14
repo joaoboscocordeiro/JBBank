@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.core.domain.model.Wallet
+import com.example.core.domain.enum.TransactionType
+import com.example.core.domain.model.Transaction
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentHomeBinding
 import com.example.jbbank.util.GetMask
@@ -37,8 +38,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getWallet()
         initUi()
+        getTransactions()
     }
 
     private fun initUi() {
@@ -49,14 +50,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getWallet() {
-        homeViewModel.getWallet().observe(viewLifecycleOwner) { stateView ->
+    private fun getTransactions() {
+        homeViewModel.getTransactions().observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
                 }
 
                 is StateView.Success -> {
-                    stateView.data?.let { showBalance(it) }
+                    showBalance(stateView.data ?: emptyList())
                 }
 
                 is StateView.Error -> {
@@ -67,9 +68,20 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun showBalance(wallet: Wallet) {
+    private fun showBalance(transactions: List<Transaction>) {
+        var cashIn = 0f
+        var cashOut = 0f
+
+        transactions.forEach { transaction ->
+            if (transaction.type == TransactionType.CASH_IN) {
+                cashIn += transaction.amount
+            } else {
+                cashOut += transaction.amount
+            }
+        }
+
         binding.textBalanceHome.text =
-            getString(R.string.text_format_value, GetMask.getFormatValue(wallet.balance))
+            getString(R.string.text_format_value, GetMask.getFormatValue(cashIn - cashOut))
     }
 
     override fun onDestroyView() {

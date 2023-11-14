@@ -8,7 +8,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.core.domain.enum.TransactionOperation
+import com.example.core.domain.enum.TransactionType
 import com.example.core.domain.model.Deposit
+import com.example.core.domain.model.Transaction
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentDepositFormBinding
 import com.example.jbbank.util.StateView
@@ -69,6 +72,14 @@ class DepositFormFragment : Fragment() {
 
                 is StateView.Success -> {
                     binding.progress.isVisible = false
+                    val transaction = Transaction(
+                        id = stateView.data?.id ?: "",
+                        operation = TransactionOperation.DEPOSIT,
+                        date = stateView.data?.date ?: 0,
+                        amount = stateView.data?.amount ?: 0f,
+                        type = TransactionType.CASH_IN
+                    )
+                    saveTransaction(transaction)
                     view?.let {
                         Snackbar.make(
                             it, "Deposito sucesso!", Snackbar.LENGTH_SHORT
@@ -84,6 +95,27 @@ class DepositFormFragment : Fragment() {
         }
     }
 
+    private fun saveTransaction(transaction: Transaction) {
+        depositViewModel.saveTransaction(transaction).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {}
+
+                is StateView.Success -> {
+                    binding.progress.isVisible = false
+                    view?.let {
+                        Snackbar.make(
+                            it, "Transaction sucesso!", Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                is StateView.Error -> {
+                    binding.progress.isVisible = false
+                    showBottomSheet(message = stateView.message)
+                }
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
