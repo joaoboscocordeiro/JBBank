@@ -34,11 +34,11 @@
     <string name="text_button_bottom_sheet">I understand</string>
 
     <!-- Errors Firebase Authentication -->
-    <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>
-    <string name="invalid_email_register_fragment">Insira um e-mail válido.</string>
-    <string name="invalid_password_register_fragment">Senha inválida, tente novamente.</string>
-    <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
-    <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
+    <string name="account_not_registered_register_fragment">No account found with this email.</string>
+    <string name="invalid_email_register_fragment">Enter a valid email.</string>
+    <string name="invalid_password_register_fragment">Invalid password, please try again.</string>
+    <string name="email_in_use_register_fragment">This email is already in use.</string>
+    <string name="strong_password_register_fragment">Enter a stronger password.</string>
     <string name="access_to_this_account_has_been_temporarily_disabled">Bloqueamos todas as solicitações deste dispositivo devido a atividades incomuns. Tente mais tarde.</string>
 
     <!-- Screen Home Fragment -->
