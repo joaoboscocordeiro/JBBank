@@ -4,6 +4,8 @@ import com.example.core.data.repository.auth.AuthFirebaseDataSource
 import com.example.core.data.repository.auth.AuthFirebaseDataSourceImpl
 import com.example.core.data.repository.deposit.DepositDataSource
 import com.example.core.data.repository.deposit.DepositDataSourceImpl
+import com.example.core.data.repository.transaction.TransactionDataSource
+import com.example.core.data.repository.transaction.TransactionDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +23,7 @@ abstract class UseCaseModule {
 
     @Binds
     abstract fun bindDepositDataSource(dataSource: DepositDataSourceImpl): DepositDataSource
+
+    @Binds
+    abstract fun bindTransactionDataSource(dataSource: TransactionDataSourceImpl): TransactionDataSource
 }

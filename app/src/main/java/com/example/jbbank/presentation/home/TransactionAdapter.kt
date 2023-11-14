@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.core.domain.enum.TransactionOperation
+import com.example.core.domain.enum.TransactionType
 import com.example.core.domain.model.Transaction
 import com.example.jbbank.databinding.ItemTransactionBinding
 import com.example.jbbank.util.GetMask
@@ -12,7 +14,7 @@ import com.example.jbbank.util.GetMask
 /**
  * Created by João Bosco on 10/11/2023.
  */
-class TransactionAdapter: ListAdapter<Transaction, TransactionAdapter.ViewHolder>(DIFF_CALLBACK) {
+class TransactionAdapter : ListAdapter<Transaction, TransactionAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Transaction>() {
@@ -45,16 +47,13 @@ class TransactionAdapter: ListAdapter<Transaction, TransactionAdapter.ViewHolder
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val transaction = getItem(position)
 
-        holder.binding.textTransactionTransfer.text = transaction.description
-        holder.binding.textTransactionType.text = when (transaction.description) {
-            "TRANSFERÊNCIA" -> "T"
-            "RECARGA" -> "R"
-            "DEPOSITO" -> "D"
-            else -> {
-                ""
-            }
+        transaction.operation?.let {
+            holder.binding.textTransactionTransfer.text = TransactionOperation.getOperation(it)
+
+            holder.binding.textTransactionType.text = TransactionType.getType(it).toString()
         }
-        holder.binding.textTransactionValue.text = GetMask.getFormatValue(transaction.value)
+
+        holder.binding.textTransactionValue.text = GetMask.getFormatValue(transaction.amount)
         holder.binding.textTransactionDate.text =
             GetMask.getFormatDate(transaction.date, GetMask.DAY_MONTH_YEAR_HOUR_MINUTE)
     }
