@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -27,6 +28,7 @@ class HomeFragment : Fragment() {
     private val binding: FragmentHomeBinding get() = _binding!!
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var adapter: TransactionAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,10 +45,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun initUi() {
+
+        adapter = TransactionAdapter(requireContext()) { transaction ->
+        }
         with(binding) {
             cardDepositHome.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
             }
+
+            rvTransaction.setHasFixedSize(true)
+            rvTransaction.adapter = adapter
         }
     }
 
@@ -54,13 +62,19 @@ class HomeFragment : Fragment() {
         homeViewModel.getTransactions().observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
+                    binding.progress.isVisible = true
                 }
 
                 is StateView.Success -> {
+                    binding.progress.isVisible = false
+
+                    adapter.submitList(stateView.data?.reversed())
+
                     showBalance(stateView.data ?: emptyList())
                 }
 
                 is StateView.Error -> {
+                    binding.progress.isVisible = false
                     Log.i("WALLET", "loginUser: ${stateView.message}")
                     showBottomSheet(message = stateView.message)
                 }

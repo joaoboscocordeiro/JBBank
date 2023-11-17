@@ -15,4 +15,6 @@
     <color name="gray_text">#999999</color>
     <color name="text_color">#707070</color>
     <color name="edit_text_background">#F6FBFF</color>
+    <color name="color_cash_in">#FF018786</color>
+    <color name="color_cash_out">#FA0014</color>
 </resources>
