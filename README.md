@@ -68,3 +68,4 @@ Aplicativo de Banco Digital
 ![bank01](https://github.com/joaoboscocordeiro/JBBank/assets/59378910/48181e21-437e-4b9b-aab5-eceeafde9b77)
 ![bank02](https://github.com/joaoboscocordeiro/JBBank/assets/59378910/56596ddc-1e8d-4b5a-ad1c-887cdb20c3cb)
 ![bank03](https://github.com/joaoboscocordeiro/JBBank/assets/59378910/8c48c4ac-538f-4102-a30f-bb980f5987e9)
+![bank04](https://github.com/joaoboscocordeiro/JBBank/assets/59378910/dc8c1605-2c73-43f5-830f-bd1579d0ba8d)
