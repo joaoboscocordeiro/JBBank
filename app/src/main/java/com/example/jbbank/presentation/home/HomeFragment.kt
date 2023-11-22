@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.core.domain.enum.TransactionOperation
 import com.example.core.domain.enum.TransactionType
 import com.example.core.domain.model.Transaction
 import com.example.jbbank.R
@@ -45,12 +46,28 @@ class HomeFragment : Fragment() {
     }
 
     private fun initUi() {
-
         adapter = TransactionAdapter(requireContext()) { transaction ->
+            when (transaction.operation) {
+                TransactionOperation.DEPOSIT -> {
+                    val action = HomeFragmentDirections
+                        .actionHomeFragmentToReceiptFragment(transaction.id)
+                    findNavController().navigate(action)
+                }
+
+                else -> {
+
+                }
+            }
         }
         with(binding) {
             cardDepositHome.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
+            }
+            cardExtractHome.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
+            }
+            textHomeShowAll.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
             }
 
             rvTransaction.setHasFixedSize(true)

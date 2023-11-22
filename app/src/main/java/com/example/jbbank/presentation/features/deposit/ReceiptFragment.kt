@@ -61,7 +61,7 @@ class ReceiptFragment : Fragment() {
     private fun initUi(deposit: Deposit) {
         with(binding) {
             toolbarReceipt.txtTitle.text = getString(R.string.text_title_toolbar_receipt)
-
+            toolbarReceipt.btnBack.ibBackWhite.setOnClickListener { findNavController().popBackStack() }
             textCodeReceipt.text = deposit.id
             textDateReceipt.text =
                 GetMask.getFormatDate(deposit.date, DAY_MONTH_YEAR_HOUR_MINUTE)

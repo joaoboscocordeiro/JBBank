@@ -14,7 +14,7 @@
 
         <include
             android:id="@+id/toolbar_receipt"
-            layout="@layout/toolbar"
+            layout="@layout/toolbar_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
