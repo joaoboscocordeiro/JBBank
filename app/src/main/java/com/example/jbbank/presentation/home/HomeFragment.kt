@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
                 is StateView.Success -> {
                     binding.progress.isVisible = false
 
-                    adapter.submitList(stateView.data?.reversed())
+                    adapter.submitList(stateView.data?.reversed()?.take(NUMBER_TAKE))
 
                     showBalance(stateView.data ?: emptyList())
                 }
@@ -101,5 +101,9 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val NUMBER_TAKE = 6
     }
 }

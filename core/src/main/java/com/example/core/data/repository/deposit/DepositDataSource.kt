@@ -7,4 +7,5 @@ import com.example.core.domain.model.Deposit
  */
 interface DepositDataSource {
     suspend fun saveDeposit(deposit: Deposit): Deposit
+    suspend fun getDeposit(id: String): Deposit
 }

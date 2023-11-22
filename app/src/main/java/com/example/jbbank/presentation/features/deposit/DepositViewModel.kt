@@ -21,13 +21,12 @@ class DepositViewModel @Inject constructor(
     private val saveTransactionUseCase: SaveTransactionUseCase
 ) : ViewModel() {
 
-    @Suppress("TooGenericExceptionCaught")
     fun saveDeposit(deposit: Deposit) = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
             depositUseCase.invoke(deposit)
             emit(StateView.Success(deposit))
-        } catch (ex: Exception) {
+        } catch (ex: DatabaseException) {
             emit(StateView.Error(ex.message))
         }
     }

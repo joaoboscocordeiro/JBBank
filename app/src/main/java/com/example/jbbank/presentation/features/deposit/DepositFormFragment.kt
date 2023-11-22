@@ -72,19 +72,7 @@ class DepositFormFragment : Fragment() {
 
                 is StateView.Success -> {
                     binding.progress.isVisible = false
-                    val transaction = Transaction(
-                        id = stateView.data?.id ?: "",
-                        operation = TransactionOperation.DEPOSIT,
-                        date = stateView.data?.date ?: 0,
-                        amount = stateView.data?.amount ?: 0f,
-                        type = TransactionType.CASH_IN
-                    )
-                    saveTransaction(transaction)
-                    view?.let {
-                        Snackbar.make(
-                            it, "Deposito sucesso!", Snackbar.LENGTH_SHORT
-                        ).show()
-                    }
+                    stateView.data?.let { saveTransaction(it) }
                 }
 
                 is StateView.Error -> {
@@ -95,16 +83,30 @@ class DepositFormFragment : Fragment() {
         }
     }
 
-    private fun saveTransaction(transaction: Transaction) {
+    private fun saveTransaction(deposit: Deposit) {
+
+        val transaction = Transaction(
+            id = deposit.id,
+            operation = TransactionOperation.DEPOSIT,
+            date = deposit.date,
+            amount = deposit.amount,
+            type = TransactionType.CASH_IN
+        )
+
         depositViewModel.saveTransaction(transaction).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {}
 
                 is StateView.Success -> {
                     binding.progress.isVisible = false
+
+                    val action = DepositFormFragmentDirections
+                        .actionDepositFormFragmentToReceiptFragment(deposit.id)
+                    findNavController().navigate(action)
+
                     view?.let {
                         Snackbar.make(
-                            it, "Transaction sucesso!", Snackbar.LENGTH_SHORT
+                            it, "Transação com sucesso!", Snackbar.LENGTH_SHORT
                         ).show()
                     }
                 }
