@@ -14,6 +14,7 @@ import com.example.core.domain.enum.TransactionType
 import com.example.core.domain.model.Transaction
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentHomeBinding
+import com.example.jbbank.framework.db.FirebaseHelper
 import com.example.jbbank.util.GetMask
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
@@ -68,6 +69,11 @@ class HomeFragment : Fragment() {
             }
             textHomeShowAll.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
+            }
+
+            btnLogout.setOnClickListener {
+                FirebaseHelper.getAuth().signOut()
+                findNavController().navigate(R.id.action_homeFragment_to_navigation)
             }
 
             rvTransaction.setHasFixedSize(true)
