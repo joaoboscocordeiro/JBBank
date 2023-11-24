@@ -29,12 +29,13 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    @Suppress("TooGenericExceptionCaught")
     fun getTransactions() = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
             val transactions = getTransactionsUseCase.invoke()
             emit(StateView.Success(transactions))
-        } catch (ex: DatabaseException) {
+        } catch (ex: Exception) {
             emit(StateView.Error(ex.message))
         }
     }
