@@ -67,4 +67,8 @@
     <string name="text_title_toolbar_receipt">Recibo</string>
     <string name="text_message_empty">Digite um valor!</string>
 
+    <!-- Screen Profile Fragment -->
+    <string name="btn_save_profile">Save</string>
+    <string name="edit_name_profile">Name:</string>
+    <string name="edit_phone_profile">Phone:</string>
 </resources>
