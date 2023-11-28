@@ -7,4 +7,5 @@ import com.example.core.domain.model.User
  */
 interface ProfileDataSource {
     suspend fun saveProfile(user: User)
+    suspend fun getProfile(): User
 }

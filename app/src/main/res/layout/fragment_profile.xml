@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/toolbar_profile"
@@ -64,13 +64,11 @@
             android:id="@+id/profile_edit_email"
             style="@style/Theme.JBBank.FormEditText"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="8dp"
             android:drawableTint="@color/purple_700"
             android:enabled="false"
             android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toTopOf="@id/btn_save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_edit_phone"
@@ -81,9 +79,21 @@
             style="@style/Theme.JBBank.Button"
             android:layout_marginTop="24dp"
             android:text="@string/btn_save_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_edit_email" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_save"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

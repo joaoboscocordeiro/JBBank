@@ -71,4 +71,5 @@
     <string name="btn_save_profile">Save</string>
     <string name="edit_name_profile">Name:</string>
     <string name="edit_phone_profile">Phone:</string>
+    <string name="text_title_toolbar_profile">Profile</string>
 </resources>
