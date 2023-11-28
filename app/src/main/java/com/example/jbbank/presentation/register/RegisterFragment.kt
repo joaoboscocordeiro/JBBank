@@ -115,7 +115,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun saveProfile(user: User) {
-        profileViewModel.save(user).observe(viewLifecycleOwner) { stateView ->
+        profileViewModel.saveProfile(user).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {}
                 is StateView.Success -> {

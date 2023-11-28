@@ -67,6 +67,9 @@ class HomeFragment : Fragment() {
             cardExtractHome.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
             }
+            cardProfileHome.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            }
             textHomeShowAll.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
             }

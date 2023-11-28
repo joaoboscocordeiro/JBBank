@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.profile.ProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar_profile"
+            layout="@layout/toolbar_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_img_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_profile">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_user_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/profile_edit_name"
+            style="@style/Theme.JBBank.FormEditText"
+            android:drawableStart="@drawable/ic_person"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/purple_700"
+            android:hint="@string/edit_name_profile"
+            android:inputType="textCapWords"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_img_profile" />
+
+        <com.vicmikhailau.maskededittext.MaskedEditText
+            android:id="@+id/profile_edit_phone"
+            style="@style/Theme.JBBank.FormEditText"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/purple_700"
+            android:hint="@string/edit_phone_profile"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_edit_name"
+            app:mask="(##) #####-####" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/profile_edit_email"
+            style="@style/Theme.JBBank.FormEditText"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/purple_700"
+            android:enabled="false"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_edit_phone"
+            tools:hint="E-mail:" />
+
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/Theme.JBBank.Button"
+            android:layout_marginTop="24dp"
+            android:text="@string/btn_save_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_edit_email" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_save"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
