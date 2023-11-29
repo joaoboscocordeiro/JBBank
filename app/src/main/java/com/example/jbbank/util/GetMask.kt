@@ -15,6 +15,7 @@ import java.util.TimeZone
  */
 object GetMask {
 
+    const val PHONE_QUANTITY = 11
     const val DAY_MONTH = 0
     const val DAY_MONTH_YEAR = 1
     const val HOUR_MINUTE = 2

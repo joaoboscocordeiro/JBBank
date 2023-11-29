@@ -16,6 +16,7 @@ import com.example.jbbank.databinding.FragmentRegisterBinding
 import com.example.jbbank.framework.db.FirebaseHelper
 import com.example.jbbank.presentation.profile.ProfileViewModel
 import com.example.jbbank.presentation.wallet.WalletViewModel
+import com.example.jbbank.util.GetMask.PHONE_QUANTITY
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
 import com.google.android.material.snackbar.Snackbar
@@ -160,9 +161,5 @@ class RegisterFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        private const val PHONE_QUANTITY = 11
     }
 }
