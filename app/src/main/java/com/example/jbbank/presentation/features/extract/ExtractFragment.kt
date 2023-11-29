@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.core.domain.enum.TransactionOperation
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentExtractBinding
 import com.example.jbbank.presentation.home.TransactionAdapter
+import com.example.jbbank.util.BaseFragment
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,10 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint
  * Created by João Bosco on 22/11/2023.
  */
 @AndroidEntryPoint
-class ExtractFragment : Fragment(R.layout.fragment_extract) {
-
-    private var _binding: FragmentExtractBinding? = null
-    private val binding: FragmentExtractBinding get() = _binding!!
+class ExtractFragment : BaseFragment<FragmentExtractBinding>(
+    R.layout.fragment_extract,
+    FragmentExtractBinding::bind
+) {
 
     private lateinit var adapter: TransactionAdapter
 
@@ -30,7 +30,6 @@ class ExtractFragment : Fragment(R.layout.fragment_extract) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentExtractBinding.bind(view)
 
         initUi()
         getTransactions()
@@ -49,39 +48,32 @@ class ExtractFragment : Fragment(R.layout.fragment_extract) {
                 }
             }
         }
-        with(binding) {
-            toolbarExtract.txtTitle.text = getString(R.string.text_title_toolbar_receipt)
-            toolbarExtract.btnBack.ibBackWhite.setOnClickListener { findNavController().popBackStack() }
+        binding?.toolbarExtract?.txtTitle?.text = getString(R.string.text_title_toolbar_receipt)
+        binding?.toolbarExtract?.btnBack?.ibBackWhite?.setOnClickListener { findNavController().popBackStack() }
 
-            rvExtract.setHasFixedSize(true)
-            rvExtract.adapter = adapter
-        }
+        binding?.rvExtract?.setHasFixedSize(true)
+        binding?.rvExtract?.adapter = adapter
     }
 
     private fun getTransactions() {
         extractViewModel.getExtract().observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
-                    binding.progress.isVisible = true
+                    binding?.progress?.isVisible = true
                 }
 
                 is StateView.Success -> {
-                    binding.progress.isVisible = false
+                    binding?.progress?.isVisible = false
 
                     adapter.submitList(stateView.data?.reversed())
                 }
 
                 is StateView.Error -> {
-                    binding.progress.isVisible = false
+                    binding?.progress?.isVisible = false
                     Log.i("WALLET", "loginUser: ${stateView.message}")
                     showBottomSheet(message = stateView.message)
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
