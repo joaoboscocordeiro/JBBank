@@ -2,11 +2,8 @@ package com.example.jbbank.presentation.home
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.core.domain.enum.TransactionOperation
@@ -15,7 +12,9 @@ import com.example.core.domain.model.Transaction
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentHomeBinding
 import com.example.jbbank.framework.db.FirebaseHelper
+import com.example.jbbank.util.BaseFragment
 import com.example.jbbank.util.GetMask
+import com.example.jbbank.util.GetMask.NUMBER_TAKE
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,20 +23,13 @@ import dagger.hilt.android.AndroidEntryPoint
  * Created by João Bosco on 07/11/2023.
  */
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
-    private val binding: FragmentHomeBinding get() = _binding!!
+class HomeFragment : BaseFragment<FragmentHomeBinding>(
+    R.layout.fragment_home,
+    FragmentHomeBinding::bind
+) {
 
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var adapter: TransactionAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentHomeBinding.inflate(inflater, container, false)
-        .apply { _binding = this }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,39 +52,38 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        with(binding) {
-            cardDepositHome.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
-            }
-            cardExtractHome.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
-            }
-            cardProfileHome.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
-            }
-            textHomeShowAll.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
-            }
 
-            btnLogout.setOnClickListener {
-                FirebaseHelper.getAuth().signOut()
-                findNavController().navigate(R.id.action_homeFragment_to_navigation)
-            }
-
-            rvTransaction.setHasFixedSize(true)
-            rvTransaction.adapter = adapter
+        binding?.cardDepositHome?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
         }
+        binding?.cardExtractHome?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
+        }
+        binding?.cardProfileHome?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
+        binding?.textHomeShowAll?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
+        }
+
+        binding?.btnLogout?.setOnClickListener {
+            FirebaseHelper.getAuth().signOut()
+            findNavController().navigate(R.id.action_homeFragment_to_navigation)
+        }
+
+        binding?.rvTransaction?.setHasFixedSize(true)
+        binding?.rvTransaction?.adapter = adapter
     }
 
     private fun getTransactions() {
         homeViewModel.getTransactions().observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
-                    binding.progress.isVisible = true
+                    binding?.progress?.isVisible = true
                 }
 
                 is StateView.Success -> {
-                    binding.progress.isVisible = false
+                    binding?.progress?.isVisible = false
 
                     adapter.submitList(stateView.data?.reversed()?.take(NUMBER_TAKE))
 
@@ -100,7 +91,7 @@ class HomeFragment : Fragment() {
                 }
 
                 is StateView.Error -> {
-                    binding.progress.isVisible = false
+                    binding?.progress?.isVisible = false
                     Log.i("WALLET", "loginUser: ${stateView.message}")
                     showBottomSheet(message = stateView.message)
                 }
@@ -120,16 +111,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.textBalanceHome.text =
+        binding?.textBalanceHome?.text =
             getString(R.string.text_format_value, GetMask.getFormatValue(cashIn - cashOut))
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    companion object {
-        private const val NUMBER_TAKE = 6
     }
 }

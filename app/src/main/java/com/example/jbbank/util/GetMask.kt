@@ -15,6 +15,8 @@ import java.util.TimeZone
  */
 object GetMask {
 
+    const val NUMBER_TAKE = 6
+    const val FLAGS_KEYBOARD = 0
     const val PHONE_QUANTITY = 11
     const val DAY_MONTH = 0
     const val DAY_MONTH_YEAR = 1
