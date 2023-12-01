@@ -62,6 +62,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         binding?.cardProfileHome?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
+        binding?.cardRechargeHome?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_rechargeReceiptFragment)
+        }
         binding?.textHomeShowAll?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
         }

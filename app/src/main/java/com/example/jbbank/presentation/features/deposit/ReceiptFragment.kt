@@ -53,7 +53,9 @@ class ReceiptFragment : BaseFragment<FragmentReceiptBinding>(
     private fun initUi(deposit: Deposit) {
 
         binding?.toolbarReceipt?.txtTitle?.text = getString(R.string.text_title_toolbar_receipt)
-        binding?.toolbarReceipt?.btnBack?.ibBackWhite?.setOnClickListener { findNavController().popBackStack() }
+        binding?.toolbarReceipt?.btnBack?.ibBackWhite?.setOnClickListener {
+            findNavController().popBackStack()
+        }
         binding?.textCodeReceipt?.text = deposit.id
         binding?.textDateReceipt?.text =
             GetMask.getFormatDate(deposit.date, DAY_MONTH_YEAR_HOUR_MINUTE)

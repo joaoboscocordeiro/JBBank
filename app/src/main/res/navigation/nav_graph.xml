@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_rechargeReceiptFragment"
+            app:destination="@id/rechargeReceiptFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFormFragment"
@@ -120,4 +123,9 @@
         android:name="com.example.jbbank.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/rechargeReceiptFragment"
+        android:name="com.example.jbbank.presentation.features.recharge.RechargeReceiptFragment"
+        android:label="fragment_recharge_receipt"
+        tools:layout="@layout/fragment_recharge_receipt" />
 </navigation>
