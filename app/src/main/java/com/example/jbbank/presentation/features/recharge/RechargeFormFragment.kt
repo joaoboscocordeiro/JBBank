@@ -109,7 +109,7 @@ class RechargeFormFragment : BaseFragment<FragmentRechargeFormBinding>(
                     binding?.progress?.isVisible = false
 
                     val action = RechargeFormFragmentDirections
-                        .actionRechargeFormFragmentToRechargeReceiptFragment()
+                        .actionRechargeFormFragmentToRechargeReceiptFragment(recharge.id)
                     findNavController().navigate(action)
 
                     view?.let {
