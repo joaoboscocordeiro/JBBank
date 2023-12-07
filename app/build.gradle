@@ -71,6 +71,9 @@ dependencies {
     // https://github.com/cheonjaewoong/shapedimageview
     implementation "io.woong.shapedimageview:shapedimageview:1.4.3"
 
+    // https://github.com/square/picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
     // Tests
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
