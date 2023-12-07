@@ -68,6 +68,9 @@ dependencies {
     // https://github.com/VicMikhailau/MaskedEditText
     implementation 'io.github.vicmikhailau:MaskedEditText:5.0.1'
 
+    // https://github.com/cheonjaewoong/shapedimageview
+    implementation "io.woong.shapedimageview:shapedimageview:1.4.3"
+
     // Tests
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
