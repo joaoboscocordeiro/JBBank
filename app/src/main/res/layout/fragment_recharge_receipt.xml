@@ -5,55 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".presentation.features.deposit.ReceiptFragment">
+    tools:context=".presentation.features.recharge.RechargeReceiptFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/toolbar_receipt"
+            android:id="@+id/toolbar_recharge"
             layout="@layout/toolbar_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_title_receipt"
+            android:id="@+id/text_title_recharge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:text="@string/text_title_receipt"
+            android:text="@string/text_title_recharge"
             android:textAlignment="center"
             android:textColor="@color/teal_700"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_receipt" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_recharge" />
 
         <TextView
             android:id="@+id/text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:text="@string/text_sub_title_receipt"
+            android:text="@string/text_sub_title_recharge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_title_receipt" />
+            app:layout_constraintTop_toBottomOf="@+id/text_title_recharge" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/text_view1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:text="@string/text_code_transaction_receipt"
+            android:text="@string/text_code_transaction_recharge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_view" />
 
         <TextView
-            android:id="@+id/text_code_receipt"
+            android:id="@+id/text_code_recharge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
@@ -61,7 +61,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/text_view1"
             tools:text="-MJHJPIFGE216516G16R1GHWRF" />
 
         <View
@@ -72,7 +72,7 @@
             android:background="?actionBarDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_code_receipt" />
+            app:layout_constraintTop_toBottomOf="@+id/text_code_recharge" />
 
         <TextView
             android:id="@+id/textView3"
@@ -80,12 +80,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="@string/text_date_transaction_receipt"
+            android:text="@string/text_date_transaction_recharge"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <TextView
-            android:id="@+id/text_date_receipt"
+            android:id="@+id/text_date_recharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -96,16 +96,17 @@
             tools:text="20/11/2023 14:00" />
 
         <TextView
+            android:id="@+id/text_view2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="@string/text_value_transaction_receipt"
+            android:text="@string/text_value_transaction_recharge"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
-            android:id="@+id/text_value_receipt"
+            android:id="@+id/text_value_recharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -115,11 +116,31 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             tools:text="R$ 100,00" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_value_transaction_recharge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view2" />
+
+        <TextView
+            android:id="@+id/text_phone_recharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_value_recharge"
+            tools:text="(11) 95644-3325" />
+
         <Button
             android:id="@+id/btn_next"
             style="@style/Theme.JBBank.Button"
             android:layout_marginBottom="16dp"
-            android:text="@string/btn_next_receipt"
+            android:text="@string/btn_next_recharge"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

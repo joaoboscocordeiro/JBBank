@@ -47,6 +47,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                     findNavController().navigate(action)
                 }
 
+                TransactionOperation.RECHARGE -> {
+                    val action = HomeFragmentDirections
+                        .actionHomeFragmentToRechargeReceiptFragment(transaction.id)
+                    findNavController().navigate(action)
+                }
+
                 else -> {
 
                 }
@@ -61,6 +67,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         }
         binding?.cardProfileHome?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
+        binding?.cardRechargeHome?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_rechargeFormFragment)
         }
         binding?.textHomeShowAll?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
