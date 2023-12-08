@@ -20,7 +20,7 @@ class LoginViewModel @Inject constructor(
     fun login(email: String, password: String) = liveData(Dispatchers.IO) {
         try {
             emit(StateView.Loading())
-            loginUseCase.invoke(email, password)
+            loginUseCase(email, password)
             emit(StateView.Success(null))
         } catch (ex: Exception) {
             emit(StateView.Error(ex.message))

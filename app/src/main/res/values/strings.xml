@@ -89,4 +89,7 @@
     <string name="text_amount_empty">Digite um valor.</string>
     <string name="text_recharge">Recarga</string>
 
+    <!-- Screen Profile User List Fragment -->
+    <string name="text_title_users">Usuários</string>
+
 </resources>

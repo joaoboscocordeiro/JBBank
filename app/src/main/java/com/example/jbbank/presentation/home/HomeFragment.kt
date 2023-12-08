@@ -71,6 +71,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         binding?.cardRechargeHome?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_rechargeFormFragment)
         }
+        binding?.cardTransferHome?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_transferUserListFragment)
+        }
         binding?.textHomeShowAll?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
         }

@@ -21,28 +21,57 @@ class ProfileDataSourceImpl @Inject constructor(
 
     private val profileRef = firebaseDatabase.reference
         .child("profile")
-        .child(getUserId)
 
     override suspend fun saveProfile(user: User) {
         return suspendCoroutine { continuation ->
-            profileRef.setValue(user).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    continuation.resumeWith(Result.success(Unit))
-                } else {
-                    task.exception?.let { error ->
-                        continuation.resumeWith(Result.failure(error))
+            profileRef
+                .child(getUserId)
+                .setValue(user)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        continuation.resumeWith(Result.success(Unit))
+                    } else {
+                        task.exception?.let { error ->
+                            continuation.resumeWith(Result.failure(error))
+                        }
                     }
                 }
-            }
         }
     }
 
     override suspend fun getProfile(): User {
         return suspendCoroutine { continuation ->
+            profileRef
+                .child(getUserId)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val user = snapshot.getValue(User::class.java)
+                        user?.let { continuation.resumeWith(Result.success(it)) }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        continuation.resumeWith(Result.failure(error.toException()))
+                    }
+                })
+        }
+    }
+
+    override suspend fun getProfileList(): List<User> {
+        return suspendCoroutine { continuation ->
             profileRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val user = snapshot.getValue(User::class.java)
-                    user?.let { continuation.resumeWith(Result.success(it)) }
+                    val userList: MutableList<User> = mutableListOf()
+
+                    for (ds in snapshot.children) {
+                        val user = ds.getValue(User::class.java)
+                        user?.let { userList.add(it) }
+                    }
+
+                    continuation.resumeWith(Result.success(
+                        userList.apply {
+                            removeAll { it.id == getUserId }
+                        }
+                    ))
                 }
 
                 override fun onCancelled(error: DatabaseError) {

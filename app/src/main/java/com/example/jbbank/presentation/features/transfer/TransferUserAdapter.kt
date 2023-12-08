@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.domain.model.User
+import com.example.jbbank.R
 import com.example.jbbank.databinding.ItemTransferUserBinding
 import com.squareup.picasso.Picasso
 
@@ -63,6 +64,8 @@ class TransferUserAdapter(
                 .load(user.image)
                 .centerCrop()
                 .into(holder.binding.imgUser)
+        } else {
+            holder.binding.imgUser.setImageResource(R.drawable.ic_person)
         }
     }
 
