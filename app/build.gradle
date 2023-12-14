@@ -74,8 +74,8 @@ dependencies {
     // https://github.com/square/picasso
     implementation 'com.squareup.picasso:picasso:2.8'
 
-    // Mockito
-
+    // https://github.com/ParkSangGwon/TedPermission
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
 
     // Unit Tests
     testImplementation 'junit:junit:4.13.2'
