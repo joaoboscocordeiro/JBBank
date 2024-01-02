@@ -8,8 +8,4 @@ data class Recharge(
     val date: Long = 0L,
     val amount: Float = 0f,
     val number: String = ""
-) /*{
-    init {
-        this.id = FirebaseDatabase.getInstance().reference.push().key ?: ""
-    }
-}*/
+)

@@ -1,5 +1,6 @@
 package com.example.jbbank.framework.remote
 
+import com.example.jbbank.framework.network.FirebaseHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -24,6 +25,7 @@ class FirebaseWalletDataSourceImpl @Inject constructor(
         .child("wallet")
 
     override suspend fun initWallet(wallet: Wallet) {
+        wallet.id = FirebaseHelper.getDatabase().reference.push().key ?: ""
         return suspendCoroutine { continuation ->
             walletRef.child(getUserId).setValue(wallet).addOnCompleteListener { task ->
                 if (task.isSuccessful) {

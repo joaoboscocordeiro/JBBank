@@ -1,5 +1,6 @@
 package com.example.jbbank.framework.remote
 
+import com.example.jbbank.framework.network.FirebaseHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -26,6 +27,7 @@ class FirebaseDepositDataSourceImpl @Inject constructor(
         .child(getUserId)
 
     override suspend fun saveDeposit(deposit: Deposit): Deposit {
+        deposit.id = FirebaseHelper.getDatabase().reference.push().key ?: ""
         return suspendCoroutine { continuation ->
             depositRef
                 .child(deposit.id)

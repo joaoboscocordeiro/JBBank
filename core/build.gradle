@@ -10,11 +10,6 @@ java {
 
 dependencies {
 
-    // Firebase
-    api platform('com.google.firebase:firebase-bom:29.0.0')
-    api ('com.google.firebase:firebase-database-ktx')
-    api ('com.google.firebase:firebase-auth-ktx')
-
     // Javax Inject
     implementation 'javax.inject:javax.inject:1'
 

@@ -1,11 +1,13 @@
 package com.example.jbbank.framework.network
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 /**
  * Created by João Bosco on 03/11/2023.
  */
 object FirebaseHelper {
+    fun getDatabase() = FirebaseDatabase.getInstance()
     fun getAuth() = FirebaseAuth.getInstance()
     fun isAuthenticated() = getAuth().currentUser != null
     fun getUserId() = FirebaseAuth.getInstance().currentUser?.uid ?: ""

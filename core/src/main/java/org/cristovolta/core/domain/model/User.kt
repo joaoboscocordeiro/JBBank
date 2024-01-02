@@ -9,6 +9,5 @@ data class User(
     val email: String = "",
     var phone: String = "",
     var image: String = "",
-    //@get:Exclude
     val password: String = ""
 )
