@@ -5,10 +5,6 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.core.domain.enum.TransactionOperation
-import com.example.core.domain.enum.TransactionType
-import com.example.core.domain.model.Recharge
-import com.example.core.domain.model.Transaction
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentRechargeFormBinding
 import com.example.jbbank.util.BaseFragment
@@ -17,6 +13,10 @@ import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import org.cristovolta.core.domain.enum.TransactionOperation
+import org.cristovolta.core.domain.enum.TransactionType
+import org.cristovolta.core.domain.model.Recharge
+import org.cristovolta.core.domain.model.Transaction
 
 /**
  * Created by João Bosco on 01/12/2023.

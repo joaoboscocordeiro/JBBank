@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentLoginBinding
-import com.example.jbbank.framework.db.FirebaseHelper
+import com.example.jbbank.framework.network.FirebaseHelper
 import com.example.jbbank.util.BaseFragment
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet

@@ -2,10 +2,10 @@ package com.example.jbbank.presentation.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.usecase.LoginUseCase
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import org.cristovolta.core.usecase.LoginUseCase
 import javax.inject.Inject
 
 /**

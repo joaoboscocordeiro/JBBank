@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.domain.model.User
+import org.cristovolta.core.domain.model.User
 import com.example.jbbank.R
 import com.example.jbbank.databinding.ItemTransferUserBinding
 import com.squareup.picasso.Picasso

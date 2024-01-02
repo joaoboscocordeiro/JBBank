@@ -6,7 +6,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.core.domain.enum.TransactionOperation
+import org.cristovolta.core.domain.enum.TransactionOperation
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentExtractBinding
 import com.example.jbbank.presentation.home.TransactionAdapter

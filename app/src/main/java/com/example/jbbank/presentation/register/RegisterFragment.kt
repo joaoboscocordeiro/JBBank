@@ -6,11 +6,11 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.core.domain.model.User
-import com.example.core.domain.model.Wallet
+import org.cristovolta.core.domain.model.User
+import org.cristovolta.core.domain.model.Wallet
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentRegisterBinding
-import com.example.jbbank.framework.db.FirebaseHelper
+import com.example.jbbank.framework.network.FirebaseHelper
 import com.example.jbbank.presentation.profile.ProfileViewModel
 import com.example.jbbank.presentation.wallet.WalletViewModel
 import com.example.jbbank.util.BaseFragment

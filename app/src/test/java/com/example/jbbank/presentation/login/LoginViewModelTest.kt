@@ -1,6 +1,6 @@
 package com.example.jbbank.presentation.login
 
-import com.example.core.usecase.LoginUseCase
+import org.cristovolta.core.usecase.LoginUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher

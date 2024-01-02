@@ -2,7 +2,7 @@ package com.example.jbbank.presentation.recovery
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.usecase.RecoveryUseCase
+import org.cristovolta.core.usecase.RecoveryUseCase
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

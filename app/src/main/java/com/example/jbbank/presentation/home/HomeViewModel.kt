@@ -2,12 +2,12 @@ package com.example.jbbank.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.usecase.GetTransactionsUseCase
-import com.example.core.usecase.GetWalletUseCase
 import com.example.jbbank.util.StateView
 import com.google.firebase.database.DatabaseException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import org.cristovolta.core.usecase.GetTransactionsUseCase
+import org.cristovolta.core.usecase.GetWalletUseCase
 import javax.inject.Inject
 
 /**

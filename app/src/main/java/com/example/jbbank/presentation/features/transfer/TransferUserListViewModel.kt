@@ -2,7 +2,7 @@ package com.example.jbbank.presentation.features.transfer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.usecase.GetProfileListUseCase
+import org.cristovolta.core.usecase.GetProfileListUseCase
 import com.example.jbbank.util.StateView
 import com.google.firebase.database.DatabaseException
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.core.domain.model.Deposit
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentReceiptBinding
 import com.example.jbbank.util.BaseFragment
@@ -14,6 +13,7 @@ import com.example.jbbank.util.GetMask
 import com.example.jbbank.util.GetMask.DAY_MONTH_YEAR_HOUR_MINUTE
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.AndroidEntryPoint
+import org.cristovolta.core.domain.model.Deposit
 
 /**
  * Created by João Bosco on 12/11/2023.

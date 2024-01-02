@@ -2,7 +2,7 @@ package com.example.jbbank.presentation.features.deposit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.usecase.GetDepositUseCase
+import org.cristovolta.core.usecase.GetDepositUseCase
 import com.example.jbbank.util.StateView
 import com.google.firebase.database.DatabaseException
 import dagger.hilt.android.lifecycle.HiltViewModel
