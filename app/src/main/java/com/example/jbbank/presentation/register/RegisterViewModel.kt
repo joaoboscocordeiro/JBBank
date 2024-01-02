@@ -2,7 +2,7 @@ package com.example.jbbank.presentation.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.usecase.RegisterUseCase
+import org.cristovolta.core.usecase.RegisterUseCase
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

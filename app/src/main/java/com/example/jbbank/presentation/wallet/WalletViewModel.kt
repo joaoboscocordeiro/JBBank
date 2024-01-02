@@ -2,8 +2,8 @@ package com.example.jbbank.presentation.wallet
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.domain.model.Wallet
-import com.example.core.usecase.InitWalletUseCase
+import org.cristovolta.core.domain.model.Wallet
+import org.cristovolta.core.usecase.InitWalletUseCase
 import com.example.jbbank.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

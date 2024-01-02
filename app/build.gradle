@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs'
     id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
 }
@@ -45,12 +47,17 @@ android {
 
 dependencies {
 
-    implementation project(':core')
+    implementation(project(':core'))
 
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Firebase
+    api platform('com.google.firebase:firebase-bom:29.0.0')
+    api ('com.google.firebase:firebase-database-ktx')
+    api ('com.google.firebase:firebase-auth-ktx')
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -64,6 +71,7 @@ dependencies {
     def lifecycle_version = "2.5.1"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
 
     // https://github.com/VicMikhailau/MaskedEditText
     implementation 'io.github.vicmikhailau:MaskedEditText:5.0.1'

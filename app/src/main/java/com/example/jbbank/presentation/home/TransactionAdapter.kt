@@ -8,9 +8,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.domain.enum.TransactionOperation
-import com.example.core.domain.enum.TransactionType
-import com.example.core.domain.model.Transaction
+import org.cristovolta.core.domain.enum.TransactionOperation
+import org.cristovolta.core.domain.enum.TransactionType
+import org.cristovolta.core.domain.model.Transaction
 import com.example.jbbank.R
 import com.example.jbbank.databinding.ItemTransactionBinding
 import com.example.jbbank.util.GetMask

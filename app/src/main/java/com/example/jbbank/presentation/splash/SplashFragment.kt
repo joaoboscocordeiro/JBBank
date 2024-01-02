@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentSplashBinding
-import com.example.jbbank.framework.db.FirebaseHelper
+import com.example.jbbank.framework.network.FirebaseHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

@@ -6,10 +6,10 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.core.domain.model.User
+import org.cristovolta.core.domain.model.User
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentProfileBinding
-import com.example.jbbank.framework.db.FirebaseHelper
+import com.example.jbbank.framework.network.FirebaseHelper
 import com.example.jbbank.util.BaseFragment
 import com.example.jbbank.util.GetMask.PHONE_QUANTITY
 import com.example.jbbank.util.StateView

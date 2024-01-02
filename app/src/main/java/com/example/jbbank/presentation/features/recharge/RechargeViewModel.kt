@@ -2,14 +2,14 @@ package com.example.jbbank.presentation.features.recharge
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.core.domain.model.Recharge
-import com.example.core.domain.model.Transaction
-import com.example.core.usecase.SaveRechargeUseCase
-import com.example.core.usecase.SaveTransactionUseCase
 import com.example.jbbank.util.StateView
 import com.google.firebase.database.DatabaseException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import org.cristovolta.core.domain.model.Recharge
+import org.cristovolta.core.domain.model.Transaction
+import org.cristovolta.core.usecase.SaveRechargeUseCase
+import org.cristovolta.core.usecase.SaveTransactionUseCase
 import javax.inject.Inject
 
 /**
