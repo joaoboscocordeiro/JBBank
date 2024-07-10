@@ -92,4 +92,8 @@
     <!-- Screen Profile User List Fragment -->
     <string name="text_title_users">Usuários</string>
 
+    <!-- Screen Recharge Fragment -->
+    <string name="text_inform_transfer_form">Digite o valor</string>
+    <string name="text_transfer">Transferir</string>
+
 </resources>

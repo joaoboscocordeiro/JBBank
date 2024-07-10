@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.jbbank.R
 import com.example.jbbank.databinding.FragmentRechargeFormBinding
 import com.example.jbbank.util.BaseFragment
+import com.example.jbbank.util.GetMask
 import com.example.jbbank.util.GetMask.PHONE_QUANTITY
 import com.example.jbbank.util.StateView
 import com.example.jbbank.util.showBottomSheet
