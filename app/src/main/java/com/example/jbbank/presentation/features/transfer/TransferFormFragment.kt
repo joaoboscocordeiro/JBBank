@@ -18,6 +18,8 @@ class TransferFormFragment : BaseFragment<FragmentTransferFormBinding>(
 ) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initUi()
     }
 
     private fun initUi() {
